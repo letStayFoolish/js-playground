@@ -161,6 +161,19 @@ playground.execute(function prototypeInPractice() {
   logger.log(person1.getFullName());
   logger.log(person2.getFullName());
 })
+
+playground.execute(function fnGenerator() {
+    function* generatorFunction () {
+        yield "Hello"
+        yield "World"
+    }
+
+    const generatorObject = generatorFunction();
+
+    for(const word of generatorObject) {
+        logger.log(word);
+    }
+})
 // Run the example algorithms
 // Uncomment the line below to run examples
 // playground.runExamples();
