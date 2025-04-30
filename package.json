@@ -1,0 +1,21 @@
+  {
+  "name": "js-myPlayground",
+  "version": "1.0.0",
+  "description": "A simple JavaScript playground for testing algorithms and code snippets",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "serve": "http-server -o",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "private": true,
+  "devDependencies": {
+    "nodemon": "^2.0.22",
+    "http-server": "^14.1.1"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}
