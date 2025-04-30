@@ -47,7 +47,7 @@ playground.execute(() => {
 
             console.log("Await should not be blocking Main thread!");
 
-            if(!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
 
             const data = await response.json();
 
@@ -71,9 +71,96 @@ playground.execute(() => {
         }
     }
 
-    void processTodosSequentially();
+    // void processTodosSequentially();
 });
 
+playground.execute(() => {
+    // Lexical scoping
+    let a = 11;
+
+    function outer() {
+        const b = 22;
+
+        const inner = function () {
+            const c = 33;
+            logger.log([a, b, c], "info");
+        };
+
+        inner();
+    }
+
+    outer();
+});
+
+// Closure
+playground.execute(() => {
+    function outer() {
+        let counter = 0;
+
+        function inner() {
+            counter++;
+            logger.log(counter);
+        }
+
+        // inner();
+        return inner; // returns function definition and its scope (counter);
+    }
+
+    // outer(); // 1
+    // outer(); // 1
+    // outer(); // 1
+
+    const fn = outer();
+
+    fn(); // 1 -> Concept of Closures
+    fn(); // 2 -> Concept of Closures
+});
+
+// Function Currying fn(a, b, c) -> f(a)(b)(c)
+playground.execute(function currying() {
+    function sum(...args) {
+        logger.log(args);
+
+        const result = args.reduce((a, b) => a + b, 0);
+
+        logger.log(result);
+
+        return result;
+    }
+
+    sum(1, 2, 3); // 6
+
+    function curry(fn) {
+        return function (a) {
+            return function (b) {
+                return function (c) {
+                    return fn(a, b, c);
+                }
+            }
+        }
+    }
+
+    // curry(sum(1, 2, 3));
+    const curriedFn = curry(sum);
+    curriedFn(2)(4)(6);
+});
+
+playground.execute(function prototypeInPractice() {
+  function Person(fName, lName) {
+    this.firstName = fName;
+    this.lastName = lName;
+  }
+
+  const person1 = new Person('John', 'Doe');
+  const person2 = new Person('Jane', 'Doe');
+
+  Person.prototype.getFullName = function () {
+    return `${this.firstName} ${this.lastName}`;
+  }
+
+  logger.log(person1.getFullName());
+  logger.log(person2.getFullName());
+})
 // Run the example algorithms
 // Uncomment the line below to run examples
 // playground.runExamples();

@@ -40,7 +40,7 @@ class PerformanceMonitor {
     const result = fn(...args);
     const end = this.getNow();
 
-    this.logger.log(`Execution time: ${(end - start).toFixed(2)} ms`, 'performance');
+    this.logger.log(`Executing: ${fn.name === "" ? "anonymous" : fn.name}-function. Execution time: ${(end - start).toFixed(2)} ms`, 'performance');
     return result;
   }
 }
