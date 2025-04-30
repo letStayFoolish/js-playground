@@ -40,7 +40,7 @@ const arr = [1, 4, 5, 6, 8, 11];
 //     // return updatedName;
 // });
 
-playground.execute(() => {
+playground.execute(function asyncFunctions () {
     const getResponse = async (id) => {
         try {
             const response = await fetch(`https://jsonplaceholder.typicode.com/todos/${id}`);
@@ -71,7 +71,7 @@ playground.execute(() => {
         }
     }
 
-    // void processTodosSequentially();
+    void processTodosSequentially();
 });
 
 playground.execute(() => {
