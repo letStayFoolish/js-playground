@@ -4,6 +4,11 @@ import Logger from './src/Logger.js';
 import PerformanceMonitor from './src/PerformanceMonitor.js';
 import AlgorithmExamples from './src/AlgorithmExamples.js';
 import Playground from './src/Playground.js';
+// Import styles
+
+if (typeof window !== 'undefined') {
+    import('./style.css');
+}
 
 // Create instances
 const logger = new Logger();

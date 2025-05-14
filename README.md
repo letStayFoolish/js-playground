@@ -173,6 +173,42 @@ npm run format:check
 
 Some files and directories are excluded from formatting. See `.prettierignore` for the complete list.
 
+## Building the Project
+
+This project uses webpack for bundling the JavaScript code and assets. The webpack configuration is defined in `webpack.config.js` and includes:
+
+- Babel for transpiling modern JavaScript to be compatible with older browsers
+- CSS loaders for handling CSS files
+- HTML Webpack Plugin for generating an HTML file that includes the bundled JavaScript
+
+### Building for Production
+
+To build the project for production (minified and optimized):
+
+```
+npm run build
+```
+
+This will create a `dist` directory with the bundled files.
+
+### Building for Development
+
+To build the project for development (with source maps and without minification):
+
+```
+npm run build:dev
+```
+
+### Development Server
+
+To start the webpack development server with hot reloading:
+
+```
+npm run serve:dev
+```
+
+This will start a development server at http://localhost:9000 and automatically open your browser.
+
 ## Testing
 
 Run the test script to verify that everything is working correctly:
