@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 // Import classes
 import Logger from './src/Logger.js';
 import PerformanceMonitor from './src/PerformanceMonitor.js';
@@ -187,3 +187,60 @@ const arr = [1, 4, 5, 6, 8, 11];
 // Run the example algorithms
 // Uncomment the line below to run examples
 // playground.runExamples();
+
+// LeetCode #2666 Allow One Function Call
+/**
+ * Given a function fn, return a new function that is identical to the original function except that it ensures fn is called at most once.
+ *
+ * The first time the returned function is called, it should return the same result as fn.
+ * Every subsequent time it is called, it should return undefined.
+ *
+ * Example 1:
+ *
+ * Input: fn = (a,b,c) => (a + b + c), calls = [[1,2,3],[2,3,6]]
+ * Output: [{"calls":1,"value":6}]
+ * Explanation:
+ * const onceFn = once(fn);
+ * onceFn(1, 2, 3); // 6
+ * onceFn(2, 3, 6); // undefined, fn was not called
+ * Example 2:
+ *
+ * Input: fn = (a,b,c) => (a * b * c), calls = [[5,7,4],[2,3,6],[4,6,8]]
+ * Output: [{"calls":1,"value":140}]
+ * Explanation:
+ * const onceFn = once(fn);
+ * onceFn(5, 7, 4); // 140
+ * onceFn(2, 3, 6); // undefined, fn was not called
+ * onceFn(4, 6, 8); // undefined, fn was not called
+ */
+
+// Closure in action
+playground.execute(function allowOneFunctionCall() {
+    const once = function (fn) {
+        let hasBeenCalled = false;
+        // A closure occurs when an inner function "remembers" variables from its outer (enclosing) function, even after the outer function has finished executing.
+        // This is possible because in JavaScript, functions retain access to the scope in which they were created.
+
+        return function (...args) {
+            // The returned function “closes over” (remembers) the variables it needs (`hasBeenCalled` and `fn`).
+            if (!hasBeenCalled) {
+                hasBeenCalled = true;
+                return fn(...args);
+            }
+
+            return undefined;
+        };
+    };
+
+    function fn(a, b, c) {
+        const result = a + b + c;
+        logger.log(result, 'info');
+        return result;
+    }
+
+    let onceFn = once(fn);
+
+    onceFn(1, 2, 3); // 6
+    onceFn(2, 4, 5); // undefined
+    onceFn(6, 7, 8); // undefined
+});

@@ -142,6 +142,37 @@ Uncomment the following line in `index.js` to run the example algorithms:
 
 You can add your own algorithms to the `AlgorithmExamples` class or create new classes for different categories of algorithms.
 
+## Code Formatting
+
+This project uses Prettier for consistent code formatting. The configuration is defined in `.prettierrc` and includes:
+
+- Single quotes
+- 2 space indentation
+- 100 character line length
+- Semicolons at the end of statements
+- ES5 trailing commas
+- And more...
+
+### Format Your Code
+
+To format all JavaScript, JSON, HTML, and CSS files:
+
+```
+npm run format
+```
+
+### Check Formatting
+
+To check if your files are formatted correctly without modifying them:
+
+```
+npm run format:check
+```
+
+### Ignored Files
+
+Some files and directories are excluded from formatting. See `.prettierignore` for the complete list.
+
 ## Testing
 
 Run the test script to verify that everything is working correctly:
